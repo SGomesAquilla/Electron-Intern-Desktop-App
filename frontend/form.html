@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'"/>
+    <link rel='stylesheet' href='./styles.css'>
+    <title>LCR-APP</title>
+</head>
+<body>
+    <div class="major-container">
+        <section>
+            <h2>Dados da câmara poço</h2>
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="proprietario">Proprietário:</label>
+                    <input type="text" id="proprietario">
+                </div>
+<!-- The following input with hidden property is just a way of adding space between the next input. -->
+                <div class="input-group">
+                    <input type="hidden" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="codigo">Código:</label>
+                    <input type="text" id="codigo">
+                </div>
+<!-- It was a clever way to do it without changing the CSS logic (that makes each input box have a certain distance from the other). This made possible to increase the width of the input proprietario only -->
+                <div class="input-group">
+                    <label for="fabricanteCamara">Fabricante:</label>
+                    <input type="text" id="fabricanteCamara">
+                </div>
+                <div class="input-group">
+                    <label for="modeloCamara">Modelo:</label>
+                    <input type="text" id="modeloCamara">
+                </div>
+                <div class="input-group">
+                    <label for="serieCamara">Série:</label>
+                    <input type="text" id="serieCamara">
+                </div>
+                <div class="input-group">
+                    <label for="inserto">Inserto:</label>
+                    <input type="text" id="inserto">
+                </div>
+                <div class="input-group">
+                    <label for="NK(Fab)">NK(Fab):</label>
+                    <input type="text" id="NK(Fab)">
+                </div>
+                <div class="input-group">
+                    <label for="TempRefCert">Temp ref cert(°C):</label>
+                    <input type="text" id="TempRefCert">
+                </div>
+                <div class="input-group">
+                    <label for="LabDeCalibracao">Lab. de Calibração:</label>
+                    <input type="text" id="LabDeCalibracao">
+                </div>
+                <div class="input-group">
+                    <label for="DataCalibracao">Data Calibração:</label>
+                    <input type="text" id="DataCalibracao">
+                </div>
+                <div class="input-group">
+                    <label for="NkCert">Nk(cert):</label>
+                    <input type="text" id="NkCert">
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Dados do Eletrômetro</h2>
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="fabricanteEletrometro">Fabricante:</label>
+                    <input type="text" id="fabricanteEletrometro">
+                </div>
+                <div class="input-group">
+                    <label for="modeloEletrometro">Modelo:</label>
+                    <input type="text" id="modeloEletrometro">
+                </div>
+                <div class="input-group">
+                    <label for="serieEletrometro">Série:</label>
+                    <input type="text" id="serieEletrometro">
+                </div>
+                <div class="input-group">
+                    <label for="Kele">Kele (nC/ue):</label>
+                    <input type="text" id="Kele">
+                </div>
+            </div>
+        </section>
+        <button onclick="exportToSheetValues()">Submit</button>
+    </div>
+</body>
+<footer>
+
+</footer>
+<script src='../ClientListInfo.js'></script>
+<script src='./form.js'></script>
+</html>

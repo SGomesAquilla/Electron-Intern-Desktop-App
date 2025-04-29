@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'"/>
+    <link rel='stylesheet' href='./styles.css'>
+    <title>LCR-APP</title>
+</head>
+<body>
+    <div class="major-container" id="content">
+        <section>
+            <h2>Usar os valores atuais de KR ?</h2>
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="eletrometro">Eletrômetro:</label>
+                    <input type="text" id="eletrometro" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="camara">Câmara:</label>
+                    <input type="text" id="camara" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="KR(LCR)">KR (LCR):</label>
+                    <input type="text" id="KR(LCR)" readonly>
+                </div>
+                <div class="input-group">
+                    <label for="DataKR">Data KR:</label>
+                    <input type="text" id="DataKR" readonly>
+                </div>
+            </div>
+        </section>
+        <p><button class="krButton" onclick="openSearchWindow()">Sim</button><button class="krButton" onclick="setNewKr()">Novo Kr</button></p>
+    </div>
+</body>
+<footer></footer>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        let krValue = localStorage.getItem('krValue') || '000';
+        let eletrometroValue = localStorage.getItem('eletrometroValue') || '000';
+        let camaraValue = localStorage.getItem('camaraValue') || '000';
+        let dataKrValue = localStorage.getItem('dataKrValue') || '000';
+        document.getElementById('KR(LCR)').value = krValue;
+        document.getElementById('eletrometro').value = eletrometroValue;
+        document.getElementById('camara').value = camaraValue;
+        document.getElementById('DataKR').value = dataKrValue;
+    });
+
+    function openSearchWindow() {
+        let krValue = document.getElementById('KR(LCR)').value;
+        let eletrometroValue = document.getElementById('eletrometro').value;
+        let camaraValue = document.getElementById('camara').value;
+        let dataKrValue = document.getElementById('DataKR').value;
+        localStorage.setItem('krValue', krValue);
+        localStorage.setItem('eletrometroValue', eletrometroValue);
+        localStorage.setItem('camaraValue', camaraValue);
+        localStorage.setItem('dataKrValue', dataKrValue);
+        let initialInfo = {"kr": krValue, "eletrometro": eletrometroValue, "camara": camaraValue, "data": dataKrValue}
+        ipcRenderer.send('open-searchWindow', (event, initialInfo));
+    };
+
+    function setNewKr() {
+        let page = document.getElementById("content");
+        let text = `
+        <h2>Defina os valores atualizados</h2>
+            <div class="input-container">
+                <div class="input-group">
+                    <label for="eletrometro">Eletrômetro:</label>
+                    <input type="text" id="eletrometro">
+                </div>
+                <div class="input-group">
+                    <label for="camara">Câmara:</label>
+                    <input type="text" id="camara">
+                </div>
+                <div class="input-group">
+                    <label for="KR(LCR)">KR (LCR):</label>
+                    <input type="text" id="KR(LCR)">
+                </div>
+                <div class="input-group">
+                    <label for="DataKR">Data KR:</label>
+                    <input type="text" id="DataKR">
+                </div>
+                <p><button onclick="openSearchWindow()">Prosseguir</button></p>
+            </div>
+        `
+        page.innerHTML = text;
+    };
+</script>
+</html>
